@@ -1,0 +1,40 @@
+﻿<Window x:Class="Science2.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:viewModel="clr-namespace:Science2.ViewModel;assembly=Science2.ViewModel"
+        Title="MainView" Height="300" Width="300"
+        d:DataContext="{d:DesignInstance Type=viewModel:MainViewModel}">
+    <Grid>
+        <Button Content="OpenFile1" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top" Width="75" Command="{Binding GetFile1}"/>
+        <Button Content="OpenFile2" HorizontalAlignment="Left" Margin="108,53,0,0" VerticalAlignment="Top" Width="75" Command="{Binding GetFile1}"/>
+        <Button Content="GetResult" HorizontalAlignment="Left" Margin="209,53,0,0" VerticalAlignment="Top" Width="75" Command="{Binding GetResult}"/>
+        <RichTextBox HorizontalAlignment="Left" Height="100" Margin="10,90,0,0" VerticalAlignment="Top" Width="75">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="{Binding DataString1}"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <RichTextBox HorizontalAlignment="Left" Height="100" Margin="108,90,0,0" VerticalAlignment="Top" Width="75">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="{Binding DataString2}"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <RichTextBox HorizontalAlignment="Left" Height="100" Margin="209,90,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.231,0.099">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="{Binding ResultString}"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Button Content="Auto step calculator (as points)" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Width="184" Height="35"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="209,215,0,0" TextWrapping="Wrap" Text="{Binding XSquareLength}" VerticalAlignment="Top" Width="27"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="235,238,0,0" TextWrapping="Wrap" Text="{Binding YSquareLength}" VerticalAlignment="Top" Width="27"/>
+
+    </Grid>
+</Window>
