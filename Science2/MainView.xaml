@@ -32,7 +32,7 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <Button Content="Auto step calculator (as points)" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Width="184" Height="35"/>
+        <Button Content="Auto step calculator (as points)" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Width="184" Height="35" Command="{Binding GetStepAndSquare}"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="209,215,0,0" TextWrapping="Wrap" Text="{Binding XSquareLength}" VerticalAlignment="Top" Width="27"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="235,238,0,0" TextWrapping="Wrap" Text="{Binding YSquareLength}" VerticalAlignment="Top" Width="27"/>
 

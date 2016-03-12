@@ -30,6 +30,8 @@ namespace Science2.ViewModel
         private string _resultString;
         private ICommand _getStepAndSquare;
         private string _step;
+        private string _xSquareLength;
+        private string _ySquareLength;
 
         public MainViewModel()
         {
@@ -37,13 +39,30 @@ namespace Science2.ViewModel
             _parser2 = new DataParser2();
         }
 
-        public string XSquareLength { get; set; }
-        public string YSquareLength { get; set; }
+        public string XSquareLength
+        {
+            get { return _xSquareLength; }
+            set
+            {
+                _xSquareLength = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public string YSquareLength
+        {
+            get { return _ySquareLength; }
+            set
+            {
+                _ySquareLength = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string Step
         {
             get { return _step; }
-            set { _step = value; }
+            set { _step = value; OnPropertyChanged(); }
         }
 
         public string DataString1
@@ -144,3 +163,10 @@ namespace Science2.ViewModel
         }
     }
 }
+
+/*  TODOS  *
+ * SquareLength and Step in separate model
+ *
+ * 
+ *  
+ */
