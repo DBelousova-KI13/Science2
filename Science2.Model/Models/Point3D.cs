@@ -2,6 +2,25 @@
 {
     public class Point3D
     {
+        public Point3D()
+        {
+            
+        }
+
+        public Point3D(decimal x, decimal y, decimal z)
+        {
+            X = x;
+            Y = y;
+            Z = z;
+        }
+
+        public Point3D(double d, double d1, double d2)
+        {
+            X = (decimal) d;
+            Y = (decimal) d1;
+            Z = (decimal) d2;
+        }
+
         public decimal X { get; set; }
         public decimal Y { get; set; }
         public decimal Z { get; set; }

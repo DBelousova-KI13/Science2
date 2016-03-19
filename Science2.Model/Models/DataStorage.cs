@@ -18,6 +18,9 @@ namespace Science2.Model.Models
             FillDataMatrix();
         }
 
+        /// <summary>
+        /// Fills DataMatrix to represent values as 2-D array with X and Y equals on lines and tabs
+        /// </summary>
         private void FillDataMatrix()
         {
             List<MatrixSortHelper> uniqX = new List<MatrixSortHelper>(); //todo: better implementation
@@ -41,8 +44,8 @@ namespace Science2.Model.Models
             }
             var xCount = uniqX.Count;
             var yCount = uniqY.Count;
-            //uniqX = uniqX.OrderBy(arg => arg).ToList(); //todo: possible mistakes
-            //uniqY = uniqY.OrderBy(arg => arg).ToList();
+            uniqX = uniqX.OrderBy(arg => arg).ToList(); //todo: possible mistakes
+            uniqY = uniqY.OrderBy(arg => arg).ToList();
             DataMatrix = new DataPoint[uniqX.Count, uniqY.Count];
             for(int i = 0; i < xCount; i++)
                 for (int j = 0; j < yCount; j++)
