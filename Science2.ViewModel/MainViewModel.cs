@@ -36,7 +36,7 @@ namespace Science2.ViewModel
         public MainViewModel()
         {
             _parser1 = new DataParser1();
-            _parser2 = new DataParser2();
+            _parser2 = new DefaultDataParser();
         }
 
         public string XSquareLength
@@ -166,7 +166,7 @@ namespace Science2.ViewModel
 
 /*  TODOS  *
  * SquareLength and Step in separate model
- *
+ * Remove redundant models (like Square)
  * 
  *  
  */

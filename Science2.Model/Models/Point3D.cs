@@ -16,7 +16,7 @@
 
         public bool Equals(Point3D obj)
         {
-            return X == obj.X && Y == obj.Y;
+            return X == obj.X && Y == obj.Y && Z == obj.Z;
         }
 
         public override int GetHashCode()

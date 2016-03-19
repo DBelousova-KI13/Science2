@@ -63,6 +63,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="FileExamples\D.xls">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="FileExamples\in.dat" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

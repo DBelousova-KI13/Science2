@@ -21,25 +21,36 @@ namespace Science2.Model.BuisnessLogic
 
         public List<Point3D> GetResult()
         {
-            var matrix = DataStorage.DataMatrix;
+            List<Point3D> resultMatrix = new List<Point3D>();
             var xCurrentPoint = 0;
             var yCurrentPoint = 0;
             //math logic comes here
             while (xCurrentPoint < DataStorage.DataMatrix.GetLength(0))
             {
-                var result = GetResultFromSingleSquare(xCurrentPoint, yCurrentPoint);
+                var result = GetResultFromSingleSquare(xCurrentPoint, yCurrentPoint); 
+                resultMatrix.Add(result);
                 xCurrentPoint += Step;
                 yCurrentPoint += Step;
             }
-            
-            throw new NotImplementedException();
+
+            return resultMatrix;
         }
 
-        private decimal GetResultFromSingleSquare(int x, int y)
+        private Point3D GetResultFromSingleSquare(int x, int y) //question: eqch square = single point (X, Y, Z = result)
         {
-            throw new NotImplementedException();
-            var square = new Square(){XStart = x, YStart = y, XLength = SquareXLength, YLength = SquareYLength};
-            //logic to find shit
+            var matrix = DataStorage.DataMatrix;
+            var xLength = x + SquareXLength;
+            var yLength = y + SquareYLength;
+            List<DataPoint> pointsInSquare = new List<DataPoint>();
+            for (int i = x; i < xLength; i++)
+            {
+                for (int j = y; j < yLength; j++)
+                {
+                    pointsInSquare.Add(matrix[x,y]);
+                }
+            }
+            //todo:todo: calculate logic
+            return new Point3D() { X = 1, Y = 1, Z = 3 }; //todo: coords for this result?
         }
     }
 }
