@@ -24,17 +24,18 @@ namespace Science2.Model.BuisnessLogic
         public List<Point3D> GetResult()
         {
             List<Point3D> resultMatrix = new List<Point3D>();
-            var xCurrentPoint = 0;
-            var yCurrentPoint = 0;
             //math logic comes here
-            while (xCurrentPoint < DataStorage.DataMatrix.GetLength(0))
-            {
-                var result = GetResultFromSingleSquare(xCurrentPoint, yCurrentPoint); 
-                resultMatrix.Add(result);
-                xCurrentPoint += Step;
-                yCurrentPoint += Step;
-            }
 
+            for (int xCurrentPoint = 0; xCurrentPoint < DataStorage.DataMatrix.GetLength(0); )
+            {
+                for (int yCurrentPoint = 0; yCurrentPoint < DataStorage.DataMatrix.GetLength(1); )
+                {
+                    var result = GetResultFromSingleSquare(xCurrentPoint, yCurrentPoint);
+                    resultMatrix.Add(result);
+                    yCurrentPoint += Step;
+                }
+                xCurrentPoint += Step;
+            }
             return resultMatrix;
         }
 
@@ -45,21 +46,17 @@ namespace Science2.Model.BuisnessLogic
             var yLength = y + SquareYLength;
             var amountOfPoints = SquareXLength * SquareYLength;
 
-            var xMatrixLen = xLength - x;
-            var yMatrixLen = yLength - y;
-
-            DataPoint[,] pointsInSquare = new DataPoint[xMatrixLen, yMatrixLen];
+            DataPoint[,] pointsInSquare = new DataPoint[SquareXLength, SquareYLength];
             for (int i = x; i < xLength; i++)
             {
                 for (int j = y; j < yLength; j++)
                 {
-                    pointsInSquare[i - xMatrixLen, j - yMatrixLen] = (matrix[x,y]);
+                    pointsInSquare[i - x, j - y] = (matrix[i,j]);//.Clone(); //+++++
                 }
             }
             
             var R = CalculateRZ1Z2(pointsInSquare);
-            //todo:todo: calculate logic
-            return new Point3D() { X = 1, Y = 1, Z = 3 }; //todo: coords for this result?
+            return R;
         }
 
         private Point3D CalculateRZ1Z2(DataPoint[,] pointsInSquare)
@@ -96,6 +93,9 @@ namespace Science2.Model.BuisnessLogic
                 decimal laneResult = 0;
                 for (int j = 0; j < pointsInSquare.GetLength(1); j++)
                 {
+                    var a = (pointsInSquare[i, j].Z1 - z1Avg);
+                    var b = (pointsInSquare[i, j].Z2 - z2Avg);
+                    var c = a*b;
                     laneResult += (pointsInSquare[i, j].Z1 - z1Avg)*(pointsInSquare[i,j].Z2 - z2Avg); //(xi-xavg)*(yi-yavg)
                 }
                 sum += laneResult;
@@ -108,7 +108,7 @@ namespace Science2.Model.BuisnessLogic
             var list = new List<DataPoint>();
             foreach (var dataPoint in points)
             {
-                list.Add(dataPoint);
+                list.Add(dataPoint.Clone());
             }
             return list;
         }

@@ -10,6 +10,13 @@ namespace Science2.Model.Models
         public List<Point3D> Points2 { get; private set; }
         public List<DataPoint> DataPoints { get; private set; }
         public DataPoint[,] DataMatrix { get; private set; }
+
+        public DataStorage(List<DataPoint> points)
+        {
+            DataPoints = points;
+            FillDataMatrix();
+        }
+
         public DataStorage(List<Point3D> points1, List<Point3D> points2)
         {
             Points1 = points1;
@@ -54,7 +61,7 @@ namespace Science2.Model.Models
                         DataPoints.Single(
                             p =>
                                 p.X == uniqX.Single(u => u.ColumnNamber == i).Value &&
-                                p.Y == uniqY.Single(u => u.ColumnNamber == j).Value); //todo: test carefully
+                                p.Y == uniqY.Single(u => u.ColumnNamber == j).Value).Clone();
                 }
 
         }
@@ -73,7 +80,7 @@ namespace Science2.Model.Models
             throw new NotImplementedException();
         }
 
-        public class MatrixSortHelper
+        public class MatrixSortHelper : IComparable
         {
             public MatrixSortHelper(decimal value, int columnNamber)
             {
@@ -82,6 +89,15 @@ namespace Science2.Model.Models
             }
             public decimal Value { get; set; }
             public int ColumnNamber { get; set; }
+            public int CompareTo(object obj)
+            {
+                var val = obj as MatrixSortHelper;
+                if (val.Value == Value)
+                    return 0;
+                if (val.Value > Value)
+                    return -1;
+                else return 1;
+            }
         }
     }
 }

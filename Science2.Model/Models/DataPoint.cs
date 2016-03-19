@@ -26,5 +26,10 @@
         public decimal Y { get; set; }
         public decimal Z1 { get; set; }
         public decimal Z2 { get; set; }
+
+        public DataPoint Clone()
+        {
+            return this.MemberwiseClone() as DataPoint;
+        }
     }
 }

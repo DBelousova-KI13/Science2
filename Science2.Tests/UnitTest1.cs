@@ -12,16 +12,18 @@ namespace Science2.Tests
         [TestMethod]
         public void Science2_Model_DataWorker()
         {
-            throw new NotImplementedException();
             //Arrange
             var step = 2;
             var sqLen = 2; //both sides
             var points = GetDataPoints();
-            //var worker = new DataWorker();
+            var worker = new DataWorker(step, sqLen, sqLen, new DataStorage(points));
 
             //Act
+            var result = worker.GetResult();
 
             //Assert
+            var expected = GetDataPointsResult();
+            CollectionAssert.AreEqual(expected, result);
         }
 
         private List<DataPoint> GetDataPoints()
