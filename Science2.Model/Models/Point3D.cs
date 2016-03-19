@@ -30,7 +30,7 @@
             var value = obj as Point3D;
             if (value == null)
                 return false;
-            return Equals(obj);
+            return Equals(value);
         }
 
         public bool Equals(Point3D obj)

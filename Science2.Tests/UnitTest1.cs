@@ -121,13 +121,13 @@ namespace Science2.Tests
             {
                 new Point3D(1.5, 7.5, -1.0),
                 new Point3D(3.5, 7.5, -1.0),
-                new Point3D(5.5, 7.5, -0.96),
-                new Point3D(1.5, 9.5, -0.66),
-                new Point3D(3.5, 9.5, 1.0),
-                new Point3D(5.5, 9.5, -0.66),
-                new Point3D(1.5, 17.0, -0.96),
-                new Point3D(3.5, 17.0, -1.0),
-                new Point3D(5.5, 17.0, -1.0)
+                new Point3D(5.5, 7.5, -1),
+                new Point3D(1.5, 9.5, -1),
+                new Point3D(3.5, 9.5, -1.0),
+                new Point3D(5.5, 9.5, -1),
+                new Point3D(1.5, 11.5, -1),
+                new Point3D(3.5, 11.5, -1.0),
+                new Point3D(5.5, 11.5, -1.0)
             };
         }
     }
