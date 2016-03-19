@@ -61,7 +61,7 @@ namespace Science2.Model.Models
                         DataPoints.Single(
                             p =>
                                 p.X == uniqX.Single(u => u.ColumnNamber == i).Value &&
-                                p.Y == uniqY.Single(u => u.ColumnNamber == j).Value).Clone();
+                                p.Y == uniqY.Single(u => u.ColumnNamber == j).Value);
                 }
 
         }

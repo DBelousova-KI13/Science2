@@ -39,23 +39,23 @@ namespace Science2.Model.BuisnessLogic
             return resultMatrix;
         }
 
-        private Point3D GetResultFromSingleSquare(int x, int y) //question: eqch square = single point (X, Y, Z = result)
+        private Point3D GetResultFromSingleSquare(int x, int y)
         {
             var matrix = DataStorage.DataMatrix;
             var xLength = x + SquareXLength;
             var yLength = y + SquareYLength;
-            var amountOfPoints = SquareXLength * SquareYLength;
 
             DataPoint[,] pointsInSquare = new DataPoint[SquareXLength, SquareYLength];
             for (int i = x; i < xLength; i++)
             {
                 for (int j = y; j < yLength; j++)
                 {
-                    pointsInSquare[i - x, j - y] = (matrix[i,j]);//.Clone(); //+++++
+                    pointsInSquare[i - x, j - y] = (matrix[i,j]);
                 }
             }
             
             var R = CalculateRZ1Z2(pointsInSquare);
+
             return R;
         }
 
@@ -108,7 +108,7 @@ namespace Science2.Model.BuisnessLogic
             var list = new List<DataPoint>();
             foreach (var dataPoint in points)
             {
-                list.Add(dataPoint.Clone());
+                list.Add(dataPoint);
             }
             return list;
         }
