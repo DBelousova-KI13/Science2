@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Science2.Model.BuisnessLogic;
 using Science2.Model.Models;
@@ -24,6 +25,51 @@ namespace Science2.Tests
             //Assert
             var expected = GetDataPointsResult();
             CollectionAssert.AreEqual(expected, result);
+        }
+
+
+        [TestMethod]
+        public void Sicence2_Model_DataParser2_Excel()
+        {
+            //Arrange
+            var path = @"F:\visual studio 2013\Projects\University\Science2\Science2.Tests\FileExamples\D.xls";
+            var parser = new DefaultDataParser();
+            
+            //Act
+            var str = ExcelToStringParser.GetStringFromExcel(path);
+            var parsedStr = parser.ParseString(str);
+
+            //Assert
+            Assert.AreEqual(parsedStr.Count, 12143);
+            Assert.IsTrue(new Point3D()
+            {
+                X = 16505018,
+                Y = 6682434,
+                Z = (decimal)8.6
+            }.Equals(parsedStr[0]));
+            
+
+        }
+
+        [TestMethod]
+        public void Sicence2_Model_DataParser2_Dat()
+        {
+            //arrange
+            var path = @"F:\visual studio 2013\Projects\University\Science2\Science2.Tests\FileExamples\in.dat";
+            var parser = new DefaultDataParser();
+
+            //Act
+            var str = File.ReadAllText(path);
+            var parsedStr = parser.ParseString(str);
+
+            //Asser
+            Assert.AreEqual(parsedStr.Count, 12143);
+            Assert.IsTrue(new Point3D()
+            {
+                X = 16504627,
+                Y = 6671328,
+                Z = (decimal)-8.7353664013669
+            }.Equals(parsedStr[0]));
         }
 
         private List<DataPoint> GetDataPoints()
@@ -83,28 +129,6 @@ namespace Science2.Tests
                 new Point3D(3.5, 17.0, -1.0),
                 new Point3D(5.5, 17.0, -1.0)
             };
-        }
-        [TestMethod]
-        public void Sicence2_Model_DataParser2_Excel()
-        {
-            //Arrange
-            var path = @"F:\visual studio 2013\Projects\University\Science2\Science2.Tests\FileExamples\D.xls";
-            var parser = new DefaultDataParser();
-            decimal aaaaa = (decimal) 9.31;
-            //Act
-            var str = ExcelToStringParser.GetStringFromExcel(path);
-            var parsedStr = parser.ParseString(str);
-
-            //Assert
-            Assert.AreEqual(parsedStr.Count, 12143);
-            Assert.IsTrue(new Point3D()
-            {
-                X = 16505018,
-                Y = 6682434,
-                Z = (decimal)8.6
-            }.Equals(parsedStr[0]));
-            
-
         }
     }
 }

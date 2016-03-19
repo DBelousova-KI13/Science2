@@ -81,7 +81,7 @@ namespace Science2.Model.BuisnessLogic
                 sum1 += (decimal)(Math.Pow((double)(point.Z1 - z1Avg), 2));
                 sum2 += (decimal)(Math.Pow((double)(point.Z2 - z2Avg), 2));
             }
-            result = (decimal)(Math.Pow((double)sum1,2)*Math.Pow((double)sum2, 2));
+            result = sum1*sum2;
             return (decimal)Math.Sqrt((double)result);
         }
 

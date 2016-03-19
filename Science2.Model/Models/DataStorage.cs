@@ -57,7 +57,7 @@ namespace Science2.Model.Models
             for(int i = 0; i < xCount; i++)
                 for (int j = 0; j < yCount; j++)
                 {
-                    DataMatrix[i, j] =
+                    DataMatrix[j, i] =
                         DataPoints.Single(
                             p =>
                                 p.X == uniqX.Single(u => u.ColumnNamber == i).Value &&
