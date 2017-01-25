@@ -1,10 +1,11 @@
-﻿namespace Science2.Model.Models
+﻿using System.Collections.Generic;
+
+namespace Science2.Model.Models
 {
     public class DataPoint
     {
         public DataPoint()
         {
-            
         }
 
         public DataPoint(decimal x, decimal y, decimal z1, decimal z2)
@@ -26,5 +27,7 @@
         public decimal Y { get; set; }
         public decimal Z1 { get; set; }
         public decimal Z2 { get; set; }
+        public decimal R { get; set; }
+      
     }
 }

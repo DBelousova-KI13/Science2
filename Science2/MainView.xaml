@@ -5,9 +5,136 @@
         mc:Ignorable="d"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:viewModel="clr-namespace:Science2.ViewModel;assembly=Science2.ViewModel"
-        Title="MainView" Height="300" Width="300"
+        Title="MainView" Height="480" Width="505"
         d:DataContext="{d:DesignInstance Type=viewModel:MainViewModel}">
-    <Grid>
+    <StackPanel Background="#22142B59">
+       <Grid >
+           <Grid.RowDefinitions>
+               <RowDefinition Height="*"/>
+               <RowDefinition/>
+                <RowDefinition/>
+               <RowDefinition />
+               <RowDefinition />
+           </Grid.RowDefinitions>
+           <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="200"/>
+               <ColumnDefinition Width="305"/>
+           </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical" Margin="2">
+                <TextBlock  TextWrapping="Wrap"
+                            Text ="Начальные данные: " />
+                <Button Background="#6576809B"
+                    HorizontalAlignment="Left" 
+                    Margin="2" VerticalAlignment="Top" Width="130" Command="{Binding GetDataFile}">
+                <Button.Content>
+                    <StackPanel>
+                            <TextBlock Text=" Загрузить файл"/>
+                            <Image Height="26" Width ="26" Source="images/download.ico"></Image>
+                        </StackPanel>
+                    
+                </Button.Content>    
+                </Button>
+             
+                    <CheckBox Margin="2" IsChecked="{Binding NotUseFirstString}" Content="Не учитывать первую строку"></CheckBox>
+                    
+                
+                <TextBlock  TextWrapping="Wrap" Margin="2" Text ="Введите расстояние между точками на карте (в метрах):" />
+                <TextBox Width="150" HorizontalAlignment="Left" Margin="2" IsEnabled = "True" Text ="{Binding HowFarString}"/>
+            </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Vertical" Margin="3">
+                <TextBlock Text ="Параметры карты:" Margin="5"/>
+                <TextBlock Text ="Ширина карты:" Margin="5"/>
+                <StackPanel Orientation="Horizontal"  IsEnabled="False">
+                    <TextBox   Margin="2" Text ="{Binding MapWidthInMetrs}" Width="80"/>
+                    <TextBlock Margin="2" Text ="(в метрах)" />
+                    <TextBox Margin="2" Text ="{Binding MapWidthInPoints}" Width="80"/>
+                    <TextBlock Margin="2" Text ="(в точках)" />
+                </StackPanel>
+                <TextBlock Text ="Высота карты:" Margin="5" />
+                <StackPanel Orientation="Horizontal" IsEnabled="False">
+                    <TextBox Margin="2"   Text ="{Binding MapHeightInMetrs}" Width="80"/>
+                    <TextBlock Margin="2" Text ="(в метрах)" />
+                    <TextBox  Margin="2" Text ="{Binding MapHeightInPoints}" Width="80"/>
+                    <TextBlock Margin="2" Text ="(в точках)" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" Margin="2">
+                <TextBlock Margin="2" Text ="Параметры окна:" />
+                <TextBlock Margin="2" Text ="Шаг для вычисления: " />
+                <TextBox  Margin="5" IsEnabled = "True" Text ="{Binding Step}"/>
+                <TextBlock TextWrapping="Wrap" Text ="В качестве шага для вычисления рекомендуется выбирать значение не меньшее 1/5 от ширины окна (минимальный размер шага устанавливается автоматически)" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="3">
+                <TextBlock Text =" " Margin="2"/>
+                <TextBlock Text ="Ширина :" Margin="2"/>
+                <StackPanel Orientation="Horizontal"  IsEnabled="True">
+                    <TextBox   Margin="2" Text ="{Binding XSquareLengthMetr}" Width="80"/>
+                    <TextBlock Margin="2" Text ="(в метрах)" />
+                    <TextBox Margin="2" Text ="{Binding XSquareLength}" Width="80"/>
+                    <TextBlock Margin="2" Text ="(в точках)" />
+                </StackPanel>
+                <TextBlock Text ="Высота :" Margin="5" />
+                <StackPanel Orientation="Horizontal" IsEnabled="True">
+                    <TextBox Margin="2"   Text ="{Binding YSquareLengthMetr}" Width="80"/>
+                    <TextBlock Margin="2" Text ="(в метрах)" />
+                    <TextBox  Margin="2" Text ="{Binding YSquareLength}" Width="80"/>
+                    <TextBlock Margin="2" Text ="(в точках)" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Vertical" Margin="3">
+                <Button Background="#6576809B" HorizontalAlignment="Left" 
+                         Margin="5"  Height="60"  Command="{Binding GetStepAndSquare}">
+                <Button.Content>
+                        <TextBlock Height="40" TextAlignment="Center" TextWrapping="Wrap" Text="Проверить данные и начать вычисления"></TextBlock>
+                </Button.Content>    
+                </Button>
+
+                
+
+               
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Vertical" Margin="3">
+                <Button Background="#6576809B"
+            HorizontalAlignment="Left" Command="{Binding SaveDataFile}"
+            Margin="2" VerticalAlignment="Top" Width="130" >
+                    <Button.Content>
+                        <StackPanel>
+                            <TextBlock TextWrapping="Wrap" Text="Сохранить файл результата"/>
+                            <Image Height="26" Width ="26" Source="images/save-as.ico"></Image>
+                        </StackPanel>
+
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            <TextBlock Margin="3" Grid.Column="0" Grid.Row="4"  Grid.ColumnSpan="2" Text ="{Binding ErrorInputMessage}"/>
+            <ProgressBar Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Minimum="0" Maximum="{Binding Worker.resultMatrix.Count}" Value="75" Height="20" Margin="2" Name="pbStatus" />
+        </Grid>
+   
+           
+            
+
+
+        <!--<TextBlock Text ="Расстояние между точками на карте:" />
+        <TextBox  Margin="5" IsEnabled = "True" Text ="{Binding Step}"/>
+
+        <TextBlock Text ="Необходимая ширина окна:" />
+        <TextBox  Margin="5" IsEnabled = "True" Text ="{Binding XSquareLength}"/>
+
+        <TextBlock Text ="Необходимая длина окна:" />
+        <TextBox  Margin="5" IsEnabled = "True" Text ="{Binding YSquareLength}"/>-->
+
+        
+
+        
+
+        <!--<TextBlock Text ="Фактическая ширина окна (в точках):" />
+        <TextBox IsEnabled = "True" Text ="{Binding PointWidth}"/>
+
+        <TextBlock Text ="Фактическая длина окна (в точках):" />
+        <TextBox IsEnabled = "True" Text ="{Binding PointHeight}"/>-->
+
+        <!--<Grid>
         <Button Content="OpenFile1" HorizontalAlignment="Left" Margin="10,53,0,0" VerticalAlignment="Top" Width="75" Command="{Binding GetFile1}"/>
         <Button Content="OpenFile2" HorizontalAlignment="Left" Margin="108,53,0,0" VerticalAlignment="Top" Width="75" Command="{Binding GetFile1}"/>
         <Button Content="GetResult" HorizontalAlignment="Left" Margin="209,53,0,0" VerticalAlignment="Top" Width="75" Command="{Binding GetResult}"/>
@@ -36,5 +163,7 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="209,215,0,0" TextWrapping="Wrap" Text="{Binding XSquareLength}" VerticalAlignment="Top" Width="27"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="235,238,0,0" TextWrapping="Wrap" Text="{Binding YSquareLength}" VerticalAlignment="Top" Width="27"/>
 
-    </Grid>
+    </Grid>-->
+
+    </StackPanel>
 </Window>

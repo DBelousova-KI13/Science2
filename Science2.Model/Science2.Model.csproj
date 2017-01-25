@@ -43,7 +43,7 @@
     <Compile Include="BuisnessLogic\DefaultDataParser.cs" />
     <Compile Include="BuisnessLogic\DataWorker.cs" />
     <Compile Include="BuisnessLogic\ExcelToStringParser.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="BuisnessLogic\GetFromCSV.cs" />
     <Compile Include="Interfaces\IDataParser.cs" />
     <Compile Include="Models\DataPoint.cs" />
     <Compile Include="Models\DataStorage.cs" />

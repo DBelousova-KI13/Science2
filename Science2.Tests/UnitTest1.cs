@@ -36,8 +36,9 @@ namespace Science2.Tests
             var parser = new DefaultDataParser();
             
             //Act
-            var str = ExcelToStringParser.GetStringFromExcel(path);
-            var parsedStr = parser.ParseString(str);
+            //var str = ExcelToStringParser.GetStringFromExcel(path);
+            var str = "";
+            var parsedStr = parser.ParseString( str);
 
             //Assert
             Assert.AreEqual(parsedStr.Count, 12143);
